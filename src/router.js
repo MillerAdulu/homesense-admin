@@ -3,7 +3,11 @@ import Router from 'vue-router';
 
 import Login from './views/Login.vue';
 
-import Admin from './components/Admin.vue';
+import Admin from './Admin.vue';
+import HomeSenses from './components/HomeSenses.vue';
+import HomeOwners from './components/HomeOwners.vue';
+import History from './components/History.vue';
+import AddHomeOwner from './components/AddHomeOwner.vue';
 
 Vue.use(Router);
 
@@ -22,6 +26,22 @@ export default new Router({
       children: [
         {
           path: '/',
+        },
+        {
+          path: 'homesenses',
+          component: HomeSenses,
+        },
+        {
+          path: 'homeowners',
+          component: HomeOwners,
+        },
+        {
+          path: 'history',
+          component: History,
+        },
+        {
+          path: 'addhomeowner',
+          component: AddHomeOwner,
         },
       ],
     },
