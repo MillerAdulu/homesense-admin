@@ -13,21 +13,21 @@
     </v-card-title>
   <v-data-table
   :headers="headers"
-  :items="desserts"
-  :loading="false"
+  :items="homesenses"
+  :loading="loading"
   :search="search"
   class="elevation-1">
     <v-progress-linear v-slot:progress color="blue" indeterminate></v-progress-linear>
     <template v-slot:items="props">
       <td class="text-xs-center">{{ props.item.homeSenseId }}</td>
-      <td class="text-xs-right">{{ props.item.homeowner }}</td>
-      <td class="text-xs-right">
-        <v-chip v-if="props.item.paid" color="green" text-color="white">Paid</v-chip>
-        <v-chip v-else color="red" text-color="white">Pending Payment</v-chip>
-      </td>
+      <td>{{ props.item.homeowner }}</td>
       <td class="text-xs-right">
         <v-chip v-if="props.item.enabled" color="green" text-color="white">Enabled</v-chip>
         <v-chip v-else color="red" text-color="white">Offline</v-chip>
+      </td>
+      <td class="text-xs-right">
+        <v-chip v-if="props.item.paid" color="green" text-color="white">Paid</v-chip>
+        <v-chip v-else color="red" text-color="white">Pending Payment</v-chip>
       </td>
       <td class="text-xs-center">
         <v-chip v-if="props.item.condition" color="green" text-color="white">Perfect</v-chip>
@@ -46,10 +46,13 @@
 </template>
 
 <script>
+import axios from '@/utils/axios';
+
 export default {
   data() {
     return {
       search: '',
+      loading: true,
       headers: [
         { text: 'HomeSense ID', align: 'left', value: 'homeSenseId' },
         { text: 'Home Owner', value: 'homeowner' },
@@ -59,33 +62,24 @@ export default {
         { text: 'Intrusion?', value: 'intrusion' },
         { text: 'Actions', value: '' },
       ],
-      desserts: [
-        {
-          homeSenseId: 'Frozen Yogurt',
-          homeowner: 159,
-          enabled: true,
-          paid: true,
-          condition: true,
-          intrusion: true,
-        },
-        {
-          homeSenseId: 'Frozen Yogurt',
-          homeowner: 159,
-          enabled: true,
-          paid: true,
-          condition: true,
-          intrusion: false,
-        },
-        {
-          homeSenseId: 'Frozen Yogurt',
-          homeowner: 159,
-          enabled: true,
-          paid: true,
-          condition: true,
-          intrusion: false,
-        },
-      ],
+      homesenses: [],
     };
+  },
+  methods: {
+    getHomeSenses() {
+      axios.get('/homesenses')
+        .then((result) => {
+          this.homesenses = result.data.data;
+          this.loading = false;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.loading = false;
+        });
+    },
+  },
+  created() {
+    this.getHomeSenses();
   },
 };
 </script>

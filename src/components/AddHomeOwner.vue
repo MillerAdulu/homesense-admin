@@ -30,6 +30,7 @@
 
     <v-btn
       :disabled="!valid"
+      :loading="loading"
       color="success"
       @click="validate"
     >
@@ -46,20 +47,39 @@
 </template>
 
 <script>
+import axios from '@/utils/axios';
+
 export default {
   data: () => ({
+    loading: false,
     valid: true,
+    email: '',
     idNumber: '',
     name: '',
-    email: '',
     phoneNumber: '',
   }),
 
   methods: {
     validate() {
-      if (this.$refs.form.validate()) {
-        this.snackbar = true;
-      }
+      const data = {
+        home_owner: {
+          email: this.email,
+          id_number: this.idNumber,
+          name: this.name,
+          phone_number: this.phoneNumber,
+        },
+      };
+
+      this.loading = true;
+      axios.post('homeowners', JSON.stringify(data))
+        .then((result) => {
+          console.log(result.data);
+          this.loading = false;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.loading = false;
+        });
     },
     reset() {
       this.$refs.form.reset();

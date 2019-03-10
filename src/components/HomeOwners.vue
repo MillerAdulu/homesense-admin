@@ -13,8 +13,8 @@
     </v-card-title>
   <v-data-table
   :headers="headers"
-  :items="desserts"
-  :loading="false"
+  :items="homeowners"
+  :loading="loading"
   :search="search"
   class="elevation-1">
     <v-progress-linear v-slot:progress color="blue" indeterminate></v-progress-linear>
@@ -23,47 +23,43 @@
       <td>{{ props.item.name }}</td>
       <td>{{ props.item.phoneNumber }}</td>
       <td>{{ props.item.email }}</td>
-      <td class="justify-center">
-        <v-btn color="blue">View</v-btn>
-      </td>
     </template>
   </v-data-table>
 </v-card>
 </template>
 
 <script>
+import axios from '@/utils/axios';
+
 export default {
   data() {
     return {
       search: '',
+      loading: true,
       headers: [
         { text: 'ID Number', value: 'idNumber' },
         { text: 'Name', value: 'name' },
         { text: 'Phone Number', value: 'phoneNumber' },
         { text: 'E-mail', value: 'email' },
-        { text: 'Actions', value: '' },
       ],
-      desserts: [
-        {
-          idNumber: 1,
-          name: 'Frozen',
-          phoneNumber: 12345678,
-          email: 'mail@mail.com',
-        },
-        {
-          idNumber: 1,
-          name: 'Frozen',
-          phoneNumber: 12345678,
-          email: 'mail@mail.com',
-        },
-        {
-          idNumber: 1,
-          name: 'Frozen',
-          phoneNumber: 12345678,
-          email: 'mail@mail.com',
-        },
-      ],
+      homeowners: [],
     };
+  },
+  methods: {
+    async getHomeOwners() {
+      axios.get('/homeowners')
+        .then((result) => {
+          this.homeowners = result.data.data;
+          this.loading = false;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.loading = false;
+        });
+    },
+  },
+  created() {
+    this.getHomeOwners();
   },
 };
 </script>
