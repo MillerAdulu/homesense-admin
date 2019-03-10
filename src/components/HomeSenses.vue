@@ -38,7 +38,7 @@
         <v-chip v-else color="blue" text-color="white">All is well</v-chip>
       </td>
       <td class="justify-center">
-        <v-btn color="blue">View</v-btn>
+        <v-btn color="blue" @click="goToRoute(props.item)">View</v-btn>
       </td>
     </template>
   </v-data-table>
@@ -76,6 +76,9 @@ export default {
           console.log(error);
           this.loading = false;
         });
+    },
+    goToRoute(item) {
+      this.$router.push({ path: `homesense/${item.homeSenseId}` });
     },
   },
   created() {

@@ -8,6 +8,7 @@ import HomeSenses from './components/HomeSenses.vue';
 import HomeOwners from './components/HomeOwners.vue';
 import History from './components/History.vue';
 import AddHomeOwner from './components/AddHomeOwner.vue';
+import HomeSense from './components/HomeSense.vue';
 
 Vue.use(Router);
 
@@ -30,6 +31,10 @@ export default new Router({
         {
           path: 'homesenses',
           component: HomeSenses,
+        },
+        {
+          path: 'homesense/:homesense',
+          component: HomeSense,
         },
         {
           path: 'homeowners',
