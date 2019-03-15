@@ -55,19 +55,42 @@
     <v-content>
       <v-container fluid fill-height>
         <v-layout justify-center>
-          <router-view />
+          <router-view/>
         </v-layout>
       </v-container>
     </v-content>
     <v-btn fab bottom right color="pink" dark fixed @click="dialog = !dialog">
       <v-icon>add</v-icon>
     </v-btn>
-    <AddHomeSense :dialog="dialog" />
+    <AddHomeSense :dialog="dialog"/>
   </v-app>
 </template>
 
 <script>
+import messaging from './utils/firebase';
 import AddHomeSense from './components/AddHomeSense.vue';
+
+messaging.usePublicVapidKey(
+  'BDysUjcSEaqxjlwpzBzmc38VpIvRhovUwqYchknwushljDKtEN-cy06lDbBAUquywivC0txRmO1aY8iP8P01XIY',
+);
+messaging
+  .requestPermission()
+  .then(() => {
+    console.log('Notification permissions granted');
+  })
+  .catch((error) => {
+    console.log('Unable to get permissions to notify.', error);
+  });
+messaging.getToken()
+  .then((token) => {
+    console.log(`Token is: ${token}`);
+  }).catch((error) => {
+    console.log('Error', error);
+  });
+
+messaging.onMessage((payload) => {
+  console.log('Message received. ', payload);
+});
 
 export default {
   data: () => ({
