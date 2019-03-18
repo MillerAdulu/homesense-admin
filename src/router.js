@@ -9,6 +9,7 @@ import HomeOwners from './components/HomeOwners.vue';
 import History from './components/History.vue';
 import AddHomeOwner from './components/AddHomeOwner.vue';
 import HomeSense from './components/HomeSense.vue';
+import Realtime from './components/Realtime.vue';
 
 Vue.use(Router);
 
@@ -47,6 +48,10 @@ export default new Router({
         {
           path: 'addhomeowner',
           component: AddHomeOwner,
+        },
+        {
+          path: 'realtime',
+          component: Realtime,
         },
       ],
     },

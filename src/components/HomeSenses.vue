@@ -19,8 +19,8 @@
   class="elevation-1">
     <v-progress-linear v-slot:progress color="blue" indeterminate></v-progress-linear>
     <template v-slot:items="props">
-      <td class="text-xs-center">{{ props.item.homeSenseId }}</td>
-      <td>{{ props.item.homeowner }}</td>
+      <td class="text-xs-center">{{ props.item.id }}</td>
+      <td>{{ props.item.owner }}</td>
       <td class="text-xs-right">
         <v-chip v-if="props.item.enabled" color="green" text-color="white">Enabled</v-chip>
         <v-chip v-else color="red" text-color="white">Offline</v-chip>
