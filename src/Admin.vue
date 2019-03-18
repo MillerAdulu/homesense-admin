@@ -69,6 +69,7 @@
 <script>
 import messaging from './utils/firebase';
 import AddHomeSense from './components/AddHomeSense.vue';
+import store from './store';
 
 messaging.usePublicVapidKey(
   'BDysUjcSEaqxjlwpzBzmc38VpIvRhovUwqYchknwushljDKtEN-cy06lDbBAUquywivC0txRmO1aY8iP8P01XIY',
@@ -89,7 +90,7 @@ messaging.getToken()
   });
 
 messaging.onMessage((payload) => {
-  console.log('Message received. ', payload);
+  store.state.intrusions.push(payload.data);
 });
 
 export default {

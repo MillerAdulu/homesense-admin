@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+    <v-card>
     <v-card-title>History
       <v-spacer></v-spacer>
       <v-text-field
@@ -18,46 +18,30 @@
       <v-progress-linear v-slot:progress color="blue" indeterminate></v-progress-linear>
       <template v-slot:items="props">
         <td class="text-xs-center">{{ props.item.id }}</td>
-        <td>{{ props.item.owner }}</td>
-        <td>
-          <v-chip color="green" text-color="white">Handled</v-chip>
-        </td>
+        <td>{{ props.item.parsed.area }}</td>
+        <td>{{ props.item.parsed.notes}}</td>
       </template>
     </v-data-table>
   </v-card>
 </template>
 
 <script>
-import axios from '@/utils/axios';
-
 export default {
+  name: 'Realtime',
   data() {
     return {
       search: '',
       headers: [
-        { text: 'HomeSense ID', align: 'left', value: 'homeSenseId' },
-        { text: 'Home Owner', value: 'homeowner' },
-        { text: 'Handled?', value: 'enabled' },
+        { text: 'Homesense ID', align: 'left', value: 'id' },
+        { text: 'Area', value: 'parsed.area' },
+        { text: 'Notes', value: 'parsed.notes' },
       ],
-      intrusions: [],
     };
   },
-  methods: {
-    getIntrusions() {
-      axios
-        .get('/homesenses')
-        .then((result) => {
-          this.intrusions = result.data.data;
-          this.loading = false;
-        })
-        .catch((error) => {
-          console.log(error);
-          this.loading = false;
-        });
+  computed: {
+    intrusions() {
+      return this.$store.getters.intrusions;
     },
-  },
-  created() {
-    this.getIntrusions();
   },
 };
 </script>
