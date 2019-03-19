@@ -102,6 +102,7 @@ export default {
       { icon: 'settings', text: 'Home Senses', path: 'homesenses' },
       { icon: 'history', text: 'History', path: 'history' },
       { icon: 'add', text: 'Add Homeowner', path: 'addhomeowner' },
+      { icon: 'add_alert', text: 'Realtime Threats', path: 'realtime' },
     ],
   }),
   methods: {
