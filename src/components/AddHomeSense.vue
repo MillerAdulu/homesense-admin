@@ -101,7 +101,7 @@ export default {
         });
     },
   },
-  created() {
+  beforeMount() {
     this.getHomeOwners();
   },
 };
