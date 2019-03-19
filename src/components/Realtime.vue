@@ -1,6 +1,6 @@
 <template>
     <v-card>
-    <v-card-title>History
+    <v-card-title>Realtime Threats
       <v-spacer></v-spacer>
       <v-text-field
       v-model="search"
