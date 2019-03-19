@@ -7,11 +7,6 @@ export default new Vuex.Store({
   state: {
     intrusions: [],
   },
-  mutations: {
-    addIntrusion(state, payload) {
-      state.intrusions.push(payload);
-    },
-  },
   getters: {
     intrusions: (state) => {
       const ints = state.intrusions.map((intru) => {
