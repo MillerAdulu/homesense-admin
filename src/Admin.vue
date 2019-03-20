@@ -59,16 +59,11 @@
         </v-layout>
       </v-container>
     </v-content>
-    <v-btn fab bottom right color="pink" dark fixed @click="dialog = !dialog">
-      <v-icon>add</v-icon>
-    </v-btn>
-    <AddHomeSense :dialog="dialog"/>
   </v-app>
 </template>
 
 <script>
 import messaging from './utils/firebase';
-import AddHomeSense from './components/AddHomeSense.vue';
 import store from './store';
 
 messaging.usePublicVapidKey(
@@ -95,13 +90,13 @@ messaging.onMessage((payload) => {
 
 export default {
   data: () => ({
-    drawer: null,
-    dialog: false,
+    drawer: true,
     items: [
       { icon: 'contacts', text: 'Home Owners', path: 'homeowners' },
       { icon: 'settings', text: 'Home Senses', path: 'homesenses' },
       { icon: 'history', text: 'History', path: 'history' },
       { icon: 'add', text: 'Add Homeowner', path: 'addhomeowner' },
+      { icon: 'add', text: 'Add HomeSense', path: 'addhomesense' },
       { icon: 'add_alert', text: 'Realtime Threats', path: 'realtime' },
     ],
   }),
@@ -109,9 +104,6 @@ export default {
     goToLink(item) {
       this.$router.push({ path: `/admin/${item.path}` });
     },
-  },
-  components: {
-    AddHomeSense,
   },
 };
 </script>
