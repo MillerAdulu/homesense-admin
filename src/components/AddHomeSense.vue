@@ -1,5 +1,4 @@
 <template>
-  <v-dialog v-model="homedialog" width="1000px">
     <v-card>
       <v-card-title class="grey lighten-4 py-4 title">Add HomeSense</v-card-title>
       <v-container grid-list-sm class="pa-4">
@@ -39,7 +38,6 @@
         </v-layout>
       </v-container>
     </v-card>
-  </v-dialog>
 </template>
 
 <script>
@@ -56,12 +54,6 @@ export default {
       notes: '',
       homeowners: [],
     };
-  },
-  props: {
-    dialog: {
-      type: Boolean,
-      default: false,
-    },
   },
   computed: {
     homedialog() {
