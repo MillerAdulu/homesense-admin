@@ -63,7 +63,7 @@ export default {
   methods: {
     addHomeSense() {
       const data = {
-        home_sense: {
+        homesense: {
           area: this.area,
           latitude: this.latitude,
           longitude: this.longitude,
