@@ -21,24 +21,10 @@
     <template v-slot:items="props">
       <td class="text-xs-center">{{ props.item.id }}</td>
       <td>{{ props.item.owner }}</td>
-      <td class="text-xs-right">
-        <v-chip v-if="props.item.enabled" color="green" text-color="white">Enabled</v-chip>
-        <v-chip v-else color="red" text-color="white">Offline</v-chip>
-      </td>
-      <td class="text-xs-right">
-        <v-chip v-if="props.item.paid" color="green" text-color="white">Paid</v-chip>
-        <v-chip v-else color="red" text-color="white">Pending Payment</v-chip>
-      </td>
+      <td class="text-xs-right">{{ props.item.area }} </td>
+      <td class="text-xs-right">{{ props.item.notes }}</td>
       <td class="text-xs-center">
-        <v-chip v-if="props.item.condition" color="green" text-color="white">Perfect</v-chip>
-        <v-chip v-else color="red" text-color="white">Damaged</v-chip>
-      </td>
-      <td class="text-xs-right">
-        <v-chip v-if="props.item.intrusion" color="red" text-color="white">Intrusion</v-chip>
-        <v-chip v-else color="blue" text-color="white">All is well</v-chip>
-      </td>
-      <td class="justify-center">
-        <v-btn color="blue" @click="goToRoute(props.item)">View</v-btn>
+        <v-chip color="green" text-color="white">Enabled</v-chip>
       </td>
     </template>
   </v-data-table>
@@ -56,11 +42,9 @@ export default {
       headers: [
         { text: 'HomeSense ID', align: 'left', value: 'homeSenseId' },
         { text: 'Home Owner', value: 'homeowner' },
+        { text: 'Area', value: 'area' },
+        { text: 'Notes', value: 'notes' },
         { text: 'Enabled?', value: 'enabled' },
-        { text: 'Paid?', value: 'paid' },
-        { text: 'Condition?', value: 'condition' },
-        { text: 'Intrusion?', value: 'intrusion' },
-        { text: 'Actions', value: '' },
       ],
       homesenses: [],
     };

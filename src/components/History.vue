@@ -18,9 +18,17 @@
       <v-progress-linear v-slot:progress color="blue" indeterminate></v-progress-linear>
       <template v-slot:items="props">
         <td class="text-xs-center">{{ props.item.id }}</td>
-        <td>{{ props.item.owner }}</td>
         <td>
-          <v-chip color="green" text-color="white">Handled</v-chip>
+          <v-chip v-if="props.item.intrusion == true"
+          color="red" text-color="white">Intrusion</v-chip>
+          <v-chip v-else color="green" text-color="white">Nothing much</v-chip>
+          </td>
+        <td>{{ props.item.homesense.area}}</td>
+        <td>{{ props.item.homesense.notes}}</td>
+        <td>
+          <v-chip v-if="props.item.intrusion == true"
+          color="green" text-color="white">Handled</v-chip>
+          <v-chip v-else color="blue" text-color="white">Nothing much</v-chip>
         </td>
       </template>
     </v-data-table>
@@ -35,8 +43,10 @@ export default {
     return {
       search: '',
       headers: [
-        { text: 'HomeSense ID', align: 'left', value: 'homeSenseId' },
-        { text: 'Home Owner', value: 'homeowner' },
+        { text: 'Intrusion ID', align: 'left', value: 'id' },
+        { text: 'Intrusion', value: 'intrusion' },
+        { text: 'Area', value: 'area' },
+        { text: 'Notes', value: 'notes' },
         { text: 'Handled?', value: 'enabled' },
       ],
       intrusions: [],
@@ -45,7 +55,7 @@ export default {
   methods: {
     getIntrusions() {
       axios
-        .get('/homesenses')
+        .get('/intrusions')
         .then((result) => {
           this.intrusions = result.data.data;
           this.loading = false;
