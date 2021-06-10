@@ -7042,8 +7042,6 @@ resolve-cwd@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/resolve-cwd/-/resolve-cwd-2.0.0.tgz#00a9f7387556e27038eae232caa372a6a59b665a"
   integrity sha1-AKn3OHVW4nA46uIyyqNypqWbZlo=
-  dependencies:
-    resolve-from "^3.0.0"
 
 resolve-from@^1.0.0:
   version "1.0.1"
@@ -8340,10 +8338,10 @@ vuetify@^1.5.5:
   resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.5.5.tgz#98e7b8c5f43395a4b00bda5a64c7b97b2895ed5d"
   integrity sha512-WXFpRNO+AX4WjmA/+maDOBLQpHpkw8xf7O9iV8KKbKVQv7OBbLOEt7a0LBKRRNJboZPyOFXtt7K4+Q/KYc6dnQ==
 
-vuex@^3.0.1:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.1.0.tgz#634b81515cf0cfe976bd1ffe9601755e51f843b9"
-  integrity sha512-mdHeHT/7u4BncpUZMlxNaIdcN/HIt1GsGG5LKByArvYG/v6DvHcOxvDCts+7SRdCoIRGllK8IMZvQtQXLppDYg==
+vuex@^3.6.2:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.6.2.tgz#236bc086a870c3ae79946f107f16de59d5895e71"
+  integrity sha512-ETW44IqCgBpVomy520DT5jf8n0zoCac+sxWnn+hMe/CzaSejb/eVw2YToiXYX+Ex/AuHHia28vWTq4goAexFbw==
 
 watchpack@^1.5.0:
   version "1.6.0"
